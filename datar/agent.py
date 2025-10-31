@@ -45,8 +45,7 @@ root_agent =  Agent(
         Presenta los resultados de manera breve, por ejemplo: 
         “Podrían estar presentes…”, “Es posible que observes…” IMPORTANTE: También incluir dentro de la respuesta
         las palabras claves de la descripción del usuario. 
-        
-        
+             
     """
     ) 
 

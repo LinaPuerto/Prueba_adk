@@ -156,14 +156,21 @@ def inferir_especies(descripcion: str) -> str:
         "luz": {
             "mucha luz": "alta",
             "soleado": "alta",
+            "nublado":"medio",
             "oscuro": "baja",
             "sombra": "baja",
             "noche": "baja"
+        },
+        "sonido": {
+            "mucha ruido": "alta",
+            "tránsito": "alta",
+            "silencio": "baja",
+            "pasos": "baja",
         }
     }
 
     # Interpretar condiciones
-    interpretacion = {"temperatura": None, "humedad": None, "luz": None}
+    interpretacion = {"temperatura": None, "humedad": None, "luz": None, "sonido": None}
 
     for cat, palabras in condiciones.items():
         for palabra, nivel in palabras.items():
@@ -174,26 +181,124 @@ def inferir_especies(descripcion: str) -> str:
     posibles = []
 
     if interpretacion["luz"] == "alta":
-        posibles.append("líquenes fotosintetizando sobre rocas o troncos expuestos")
-        posibles.append("musgos tolerantes a la radiación solar")
+        posibles.append("Araneidae - arañas de telas orbiculares, pone sus telas en sitios luminosos")
+        posibles.append("Micrathena bogota - araña espinosa")
+        posibles.append("Chrysomelidae - escarabajos de las hojas")
+        posibles.append("Ichneumonidae - avispas parasitoides")
+        posibles.append("Syrphidae - moscas de las flores")
+        posibles.append("Bombus hortulanus - abejorro")
+        posibles.append("Eurema - mariposas amarillas")
+        posibles.append("Cladonia -Líquen")
+        posibles.append("Lecanora caesiorubella -Líquen")
+        posibles.append("Flavopunctelia flaventior -Líquen")
+        posibles.append("Teloschistes exilis -Líquen")
+        posibles.append("Taraxacum officinale - diente de león")
+        posibles.append("Trifolium repens - trébol blanco")
+        posibles.append("Trébol morado")
+
 
     if interpretacion["humedad"] == "alta":
-        posibles.append("hongos y bacterias del suelo en plena actividad")
-        posibles.append("anfibios e insectos asociados a ambientes húmedos")
-
-    if interpretacion["humedad"] == "baja":
-        posibles.append("líquenes resistentes a la desecación")
-        posibles.append("insectos que buscan refugio bajo la hojarasca")
-
-    if interpretacion["temperatura"] == "baja":
-        posibles.append("líquenes activos en el frío")
-        posibles.append("hongos latentes o de crecimiento lento")
+        posibles.append("Aphididae (áfidos)")
+        posibles.append("Ascalapha odorata (polilla bruja)")
+        posibles.append("Sphagnum, Fissidens, Campylopus, Plagiochila, Plagiochila,Metzgeria - musgo")
+        posibles.append("Usnea - Líquen")  
+        posibles.append("Cora - Líquen")
+        posibles.append(" Pseudomonas - Bacterias del suelo")
+        posibles.append("Pedomicrobium - Bacterias del suelo")
+        posibles.append("Coprinellus - Hongo")
+        posibles.append("Lactarius - Hongo")
+    
 
     if interpretacion["temperatura"] == "alta":
-        posibles.append("insectos y arácnidos más activos")
-        posibles.append("hongos superficiales menos visibles")
+        posibles.append("Chrysomelidae (escarabajos de las hojas)")
+        posibles.append("Bombus hortulanus (abejorro)")
+        posibles.append("Eurema (mariposas amarillas)") 
+        posibles.append("Taraxacum officinale (diente de león)") 
+           
 
-    # Redacción naturalista
+    if interpretacion["luz"] == "media":
+        posibles.append("Aphididae (áfidos)")
+        posibles.append("Curculionidae (escarabajos picudos)") 
+        posibles.append("Compsus canescens (gorgojos)")  
+        posibles.append("Eurema (mariposas amarillas)") 
+        posibles.append("Campylopus  musgo") 
+        posibles.append("Sphagnum musgo") 
+        posibles.append("Cora liquen") 
+        posibles.append("Ganoderma") 
+        posibles.append("Lactarius") 
+
+    if interpretacion["humedad"] == "media":
+        posibles.append("Chrysomelidae (escarabajos de las hojas)")
+        posibles.append("Curculionidae (escarabajos picudos)")  
+        posibles.append("Ichneumonidae (avispas parasitoides)") 
+        posibles.append("Syrphidae (moscas de las flores)") 
+        posibles.append("Compsus canescens (gorgojos)") 
+        posibles.append("Bombus hortulanus (abejorro)") 
+        posibles.append("Eurema (mariposas amarillas)") 
+        posibles.append("Cladonia Líquen") 
+        posibles.append("Lecanora caesiorubella Líquen") 
+        posibles.append("Flavopunctelia flaventiorLíquen") 
+        posibles.append("Teloschistes exilis Líquen") 
+        posibles.append("Glomus (hongos micorrízicos)") 
+        posibles.append("Acaulospora (micorrízico)") 
+        posibles.append("Ganoderma Hongos") 
+        posibles.append("Phellinus Hongos")
+        posibles.append("Taraxacum officinale (diente de león)")
+        posibles.append("Trifolium repens (trébol blanco)")
+        posibles.append("Trébol morado")
+    
+
+    if interpretacion["temperatura"] == "media":
+        posibles.append("Aphididae (áfidos)")
+        posibles.append("Curculionidae (escarabajos picudos)")  
+        posibles.append("Ichneumonidae (avispas parasitoides)") 
+        posibles.append("Syrphidae (moscas de las flores)") 
+        posibles.append("Ascalapha odorata (polilla bruja)") 
+        posibles.append("Compsus canescens (gorgojos)") 
+        posibles.append("Cora Líquenes") 
+        posibles.append("Usnea Líquenes") 
+        posibles.append("Cladonia Líquenes") 
+        posibles.append("Lecanora caesiorubella Líquenes") 
+        posibles.append("Flavopunctelia flaventior Líquenes") 
+        posibles.append("Teloschistes exilisLíquenes") 
+        posibles.append("Pseudomonas - Bacteria") 
+        posibles.append("Acinetobacter Bacteria") 
+        posibles.append("Pedomicrobium Bacteria") 
+        posibles.append("Glomus (hongos micorrízicos)") 
+        posibles.append("Acaulospora (micorrízico)") 
+        posibles.append("Coprinellus Hongos") 
+        posibles.append("Ganoderma Hongos") 
+        posibles.append("Lactarius Hongos")
+        posibles.append("Phellinus Hongos")
+        posibles.append("Trifolium repens (trébol blanco)")
+        posibles.append("Trébol morado")
+
+ 
+    if interpretacion["luz"] == "baja":
+        posibles.append("Sclerosomatidae (opiliones)")
+        posibles.append("Ascalapha odorata (polilla bruja)")  
+        posibles.append("Fissidens Briófita")  
+        posibles.append("Plagiochila Briófita")  
+        posibles.append("Metzgeria Briófita")  
+        posibles.append("Glomus (hongos micorrízicos)")  
+        posibles.append("Acaulospora (micorrízico)")
+        posibles.append("Coprinellus Hongos")
+        posibles.append("Phellinus Hongos")
+
+
+    
+    if interpretacion["sonido"] == "baja":
+        posibles.append("Ascalapha odorata (polilla bruja) - Sensible a sonidos fuertes ")
+        
+    if interpretacion["temperatura"] == "baja":
+        posibles.append(" Campylopus Briofitas")
+        posibles.append("Fissidens Briofitas")  
+        posibles.append("Sphagnum Briofitas")
+        posibles.append("Plagiochila Briofitas")
+        posibles.append("Metzgeria Briofitas")
+
+
+    # Redacción 
     if posibles:
         salida = (
             "Basado en tu descripción, es posible que observes:\n\n- "
