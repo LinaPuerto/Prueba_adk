@@ -14,10 +14,10 @@ server = FastMCP("servidor_bosque")
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 PDFS = {
-    "filosofia_fungi": r"E:\DATAR\pdfs\Filosofia_fungi.pdf",
-    "margullis": r"E:\DATAR\pdfs\Margullis.pdf",
-    "hongo_planta": r"E:\DATAR\pdfs\Hongo_planta.pdf",
-    "donna": r"E:\DATAR\pdfs\donna.pdf",
+    "filosofia_fungi": r"E:\DATAR\Prueba_adk\pdfs\Filosofia_fungi.pdf",
+    "margullis": r"E:\DATAR\Prueba_adk\pdfs\Margullis.pdf",
+    "hongo_planta": r"E:\DATAR\Prueba_adk\pdfs\Hongo_planta.pdf",
+    "donna": r"E:\DATAR\Prueba_adk\pdfs\donna.pdf",
 }
 
 # Fuentes fijas
@@ -45,9 +45,9 @@ def leer_pagina(url: str) -> str:
 @server.tool()
 def explorar_pdf(tema: str) -> str:
     """
-    Explora un PDF asociado al tema y genera un conjunto de preguntas reflexivas
-    basadas en filosofía de la biología, simbiosis, concepto de individuo y asociaciones.
-    Usa el modelo Gemini para formularlas.
+    Explora un los archivos que estan en PDFS, busca los temas asociados y genera
+    un conjunto de preguntas reflexivas basadas en filosofía de la biología, simbiosis,
+    concepto de individuo y asociaciones.Usa el modelo Gemini para formularlas.
     """
     tema = tema.lower().strip()
     if tema not in PDFS:
