@@ -9,7 +9,7 @@ from datetime import datetime
 import google.generativeai as genai
 
 # Inicializa el servidor
-server = FastMCP("servidor_bosque")
+mcp = FastMCP("servidor_bosque")
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
@@ -31,9 +31,9 @@ FUENTES = {
 def log_uso(fuente, tipo):
     """Guarda registro de cada fuente usada."""
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(f"[{timestamp}] Usando {tipo}: {fuente}")
+    print(f"[{timestamp}] Usando {tipo}: {fuente}", flush=True)
 
-@server.tool()
+@mcp.tool()
 def leer_pagina(url: str) -> str:
     """Lee y devuelve texto de una página web."""
     log_uso(url, "página web")
@@ -42,7 +42,7 @@ def leer_pagina(url: str) -> str:
     text = soup.get_text(separator="\n", strip=True)
     return text[:4000]
 
-@server.tool()
+@mcp.tool()
 def explorar_pdf(tema: str) -> str:
     """
     Explora un los archivos que estan en PDFS, busca los temas asociados y genera
@@ -97,7 +97,7 @@ def explorar_pdf(tema: str) -> str:
     )
     return resultado
 
-@server.tool()
+@mcp.tool()
 def explorar(tema: str) -> str:
     """
     Busca información sobre un tema combinando PDFs y fuentes web.
@@ -124,7 +124,7 @@ def explorar(tema: str) -> str:
 
     return respuesta
 
-@server.tool()
+@mcp.tool()
 def inferir_especies(descripcion: str) -> str:
     """
     Analiza las condiciones descritas por el usuario (temperatura, humedad, luz, suelo, sonido etc.)
@@ -310,6 +310,10 @@ def inferir_especies(descripcion: str) -> str:
 
     return salida
 
+# CRÍTICO: Cambiar el if __name__ == "__main__" por esto
 if __name__ == "__main__":
-    print("🚀 Servidor MCP iniciado y esperando conexiones...")
-    server.run()
+    import sys
+    import asyncio
+    
+    # Usar el método correcto para ejecutar el servidor
+    asyncio.run(mcp.run())
