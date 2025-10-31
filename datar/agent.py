@@ -16,7 +16,7 @@ mcp_bosque_tool = MCPToolset(
     )
 )
 
-root_agent = Agent(
+root_agent =  Agent(
     model='gemini-2.5-flash',
     name='root_agent',
     description=(
@@ -42,8 +42,7 @@ root_agent = Agent(
         'sus interacciones o adaptaciones. Luego, propón una o dos preguntas reflexivas que inviten '
         'a la observación o la exploración personal del entorno. Mantén siempre un tono amable, '
         'curioso y naturalista. Fomenta la conexión con la naturaleza sin recurrir a lenguaje '
-        'excesivamente técnico. Prefiere preguntas abiertas y reflexivas, para esto puedes basarte en los '
+        'excesivamente técnico. Prefiere preguntas abiertas y reflexivas, para esto usa los '
         'cuestionamientos planteados en los pdfs disponibles en la herramienta explorar_pdf.'
     )
-
 )
