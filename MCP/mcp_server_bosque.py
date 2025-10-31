@@ -123,3 +123,88 @@ def explorar(tema: str) -> str:
         respuesta = f"No encontré información registrada para el tema '{tema}'."
 
     return respuesta
+
+@server.tool()
+def inferir_especies(descripcion: str) -> str:
+    """
+    Analiza las condiciones descritas por el usuario (temperatura, humedad, luz, suelo, sonido etc.)
+    y sugiere grupos de organismos que podrían estar activos o visibles.
+    Ejemplo de entrada:
+    "Hace frío, pero hay mucha luz y el suelo está seco."
+    """
+
+    descripcion = descripcion.lower()
+
+    # Diccionarios de palabras clave
+    condiciones = {
+        "temperatura": {
+            "frío": "baja",
+            "helado": "baja",
+            "calor": "alta",
+            "cálido": "alta",
+            "templado": "media"
+        },
+        "humedad": {
+            "húmedo": "alta",
+            "mojado": "alta",
+            "charcos": "alta",
+            "llovido": "alta",
+            "rocío":"media",
+            "seco": "baja",
+            "árido": "baja"
+        },
+        "luz": {
+            "mucha luz": "alta",
+            "soleado": "alta",
+            "oscuro": "baja",
+            "sombra": "baja",
+            "noche": "baja"
+        }
+    }
+
+    # Interpretar condiciones
+    interpretacion = {"temperatura": None, "humedad": None, "luz": None}
+
+    for cat, palabras in condiciones.items():
+        for palabra, nivel in palabras.items():
+            if palabra in descripcion:
+                interpretacion[cat] = nivel
+
+    # Reglas ecológicas simples
+    posibles = []
+
+    if interpretacion["luz"] == "alta":
+        posibles.append("líquenes fotosintetizando sobre rocas o troncos expuestos")
+        posibles.append("musgos tolerantes a la radiación solar")
+
+    if interpretacion["humedad"] == "alta":
+        posibles.append("hongos y bacterias del suelo en plena actividad")
+        posibles.append("anfibios e insectos asociados a ambientes húmedos")
+
+    if interpretacion["humedad"] == "baja":
+        posibles.append("líquenes resistentes a la desecación")
+        posibles.append("insectos que buscan refugio bajo la hojarasca")
+
+    if interpretacion["temperatura"] == "baja":
+        posibles.append("líquenes activos en el frío")
+        posibles.append("hongos latentes o de crecimiento lento")
+
+    if interpretacion["temperatura"] == "alta":
+        posibles.append("insectos y arácnidos más activos")
+        posibles.append("hongos superficiales menos visibles")
+
+    # Redacción naturalista
+    if posibles:
+        salida = (
+            "Basado en tu descripción, es posible que observes:\n\n- "
+            + "\n- ".join(posibles)
+            + "\n\nCada uno responde de manera distinta a las condiciones ambientales descritas."
+        )
+    else:
+        salida = "No pude inferir condiciones claras a partir de tu descripción."
+
+    return salida
+
+if __name__ == "__main__":
+    print("🚀 Servidor MCP iniciado y esperando conexiones...")
+    server.run()
