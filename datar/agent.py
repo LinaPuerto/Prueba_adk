@@ -17,7 +17,7 @@ mcp_bosque_tool = MCPToolset(
     )
 )
 
-# CORRECCIÓN: Pasa las herramientas directamente en el constructor
+#  Pasa las herramientas directamente en el constructor
 root_agent = Agent(
     model="gemini-2.0-flash-exp",
     name="root_agent",
@@ -38,10 +38,28 @@ root_agent = Agent(
         Etapa 2 — IMPORTANTE: Usa la herramienta inferir_especies.
         Inferencia ecológica: Usa la descripción del usuario como entrada y consulta la herramienta 
         inferir_especies para inferir qué organismos podrían estar activos o visibles en esas condiciones. 
-        Relaciona las condiciones descritas con posibles especies o grupos taxonómicos. 
+        IMPORTANTE: Relaciona las condiciones descritas con posibles especies o grupos taxonómicos incluidos en la 
+        herramienta inferir_especies. 
         Presenta los resultados de manera breve, por ejemplo: 
         "Podrían estar presentes…", "Es posible que observes…". IMPORTANTE: También incluir dentro de la respuesta
         las palabras clave de la descripción del usuario.
+        
+        Etapa 3 — Profundización: Pide al usuario que elija una especie o grupo mencionado. 
+        Ofrece datos, de forma breve, sobre sus interacciones con otros organismos . 
+        Basado en su papel ecológico,usa la herramienta explorar_pdf para proponer una o dos preguntas 
+        reflexivas que inviten a la observación o la exploración personal del entorno relacionadas con temas como:
+        - simbiosis
+        - concepto de individuo
+        - cooperación y asociaciones biológicas
+        - límites entre especies
+        - vida y relaciones ecológicas
+        - el humano como parte del ecosistema
+  . 
+        Mantén siempre un tono amable, curioso y naturalista. Fomenta la conexión con la naturaleza sin recurrir a lenguaje  
+        excesivamente técnico ni a metáforas antropocéntricas. 
+        Para esto usa los cuestionamientos planteados en los pdfs disponibles en la herramienta explorar_pdf.
+    
+
     """,
     # Aquí es donde se pasan las herramientas
     tools=[mcp_bosque_tool]
